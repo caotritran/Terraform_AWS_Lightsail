@@ -9,10 +9,10 @@ resource "aws_lightsail_static_ip" "static_ip" {
 }
 
 # import Lightsail SSH Key Pair
-resource "aws_lightsail_key_pair" "lg_key_pair" {
-  name       = "importing"
-  public_key = file("./id_rsa.pub")
-}
+# resource "aws_lightsail_key_pair" "lg_key_pair" {
+#   name       = "importing"
+#   public_key = file("./id_rsa.pub")
+# }
 
 # Create a new Wordpress Lightsail Instance
 resource "aws_lightsail_instance" "instance" {
@@ -20,8 +20,8 @@ resource "aws_lightsail_instance" "instance" {
   availability_zone = var.instance_availability_zone
   blueprint_id = var.instance_blueprintid
   bundle_id = var.instance_bundleid
-  #key_pair_name = var.intance_key_pair
-  key_pair_name = aws_lightsail_key_pair.lg_key_pair
+  key_pair_name = var.intance_key_pair
+  #key_pair_name = aws_lightsail_key_pair.lg_key_pair
   tags = {
     Environment = "TDA"
   }
